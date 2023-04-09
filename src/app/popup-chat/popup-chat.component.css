@@ -1,0 +1,124 @@
+.wrap{
+  padding: 10px;
+}
+.info{
+  margin-bottom: 10px;
+}
+.headPopup{
+  padding: 5px 0;
+  border-top: 1px solid rgba(190, 190, 190, 0.56);
+  border-bottom: 1px solid rgba(190, 190, 190, 0.56);
+  display: flex;
+  margin-bottom: 20px;
+}
+.headPopupTextDiv{
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  padding: 5px 0;
+}
+.membersOfChat{
+  padding-top:15px;
+  border-top: 1px solid rgba(190, 190, 190, 0.56);
+  border-bottom: 1px solid rgba(190, 190, 190, 0.56);
+}
+.member{
+  display: flex;
+  margin-bottom: 15px;
+}
+.memberName{
+  margin-left: 10px;
+}
+.headPopupImg,.memberImg,.memberWithoutImg{
+  /*background-color: #56be9f;*/
+  border-radius: 50%;
+}
+.memberWithoutImg{
+  background-color: #56be9f;
+  color: white;
+  font-weight: bold;
+  width: 50px;
+  height: 50px;
+  display: flex;
+}
+.memberWithoutImg p{
+  margin: auto;
+  font-size: 20px;
+}
+.memberImg,.memberWithoutImg{
+  width: 50px;
+  height: 50px;
+}
+.headPopupImg{
+  width: 70px;
+  height: 70px;
+}
+.headPopupCount{
+  width: 100px;
+  font-size: 12px;
+  opacity: 0.6;
+}
+.headPopupTitle{
+  font-size: 16px;
+  width: 100px;
+}
+
+.chatWithoutImg p{
+  margin: auto;
+  font-size: 20px;
+}
+.chatWithoutImg{
+  border-radius: 50%;
+  margin-bottom: 5px;
+  width: 70px;
+  height: 70px;
+}
+.chatWithoutImg{
+  background-color: #56be9f;
+  color: white;
+  font-weight: bold;
+  display: flex;
+}
+
+/*upload photo*/
+.loadImg{
+  margin-left: 50px;
+}
+.uploadInput, .cancelInput{
+  width: 80px;
+  border: none;
+  padding: 9px;
+  border-radius: 4px;
+  transition: 0.5s ease-in-out;
+  margin-bottom: 9px;
+}
+.cancelInput{
+  background-color: white;
+  color: rgba(86, 190, 159, 0.49);
+  margin-left: 10px;
+}
+.uploadInput{
+  background-color: rgba(48, 225, 125, 0.2);
+}
+.cancelInput:hover,.uploadInput:hover{
+  transition: 0.5s ;
+  box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+  cursor: pointer;
+}
+.cancelInput:hover{
+  background-color: rgba(128, 128, 128, 0.12);
+}
+
+.loadInput{
+  border: none;
+  outline: none;
+  margin-bottom: 10px;
+}
+::-webkit-file-upload-button {
+  background: #ffffff;
+  color: #000000;
+  padding: 3px;
+  border-radius: 3px;
+  cursor: pointer;
+}

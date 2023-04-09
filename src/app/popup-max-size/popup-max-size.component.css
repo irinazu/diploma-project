@@ -1,0 +1,10 @@
+.divErrorDescription{
+  padding: 20px 30px;
+}
+.error{
+  font-weight: bold;
+  text-align: center;
+}
+.errorDescription{
+  text-align: center;
+}

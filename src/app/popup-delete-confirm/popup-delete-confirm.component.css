@@ -1,0 +1,43 @@
+.confirmDeleting{
+  display: flex;
+}
+
+.cancel, .delete{
+  width: 60px;
+  border: none;
+  padding: 9px;
+  border-radius: 4px;
+  transition: 0.5s ease-in-out;
+  margin-bottom: 9px;
+}
+.cancel{
+  background-color: white;
+  color: #56be9f;
+}
+.delete{
+  margin-left: 5px;
+  background-color: rgba(48, 225, 125, 0.35);
+}
+.cancel:hover,.delete:hover{
+  transition: 0.5s ;
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  cursor: pointer;
+}
+.cancel:hover{
+  background-color: rgba(128, 128, 128, 0.12);
+}
+.delete:hover{
+  background-color: rgba(48, 225, 125, 0.68);
+}
+
+.deleteMessage{
+  font-size: 16px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid rgba(190, 190, 190, 0.45);
+}
+.deleteMessageConfirm{
+  margin-bottom: 15px;
+}
+label{
+  margin-left: 5px;
+}

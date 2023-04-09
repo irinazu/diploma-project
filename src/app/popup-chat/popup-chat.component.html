@@ -1,0 +1,42 @@
+<div class="wrap">
+  <div class="info">Информация</div>
+  <div class="headPopup">
+
+    <img [src]="imageOfChat.url!" class="headPopupImg" *ngIf="checkImgForChat();else withoutImgChat">
+    <ng-template #withoutImgChat>
+      <div class="chatWithoutImg">
+        <p>{{title.charAt(0).toLocaleUpperCase()}}</p>
+      </div>
+    </ng-template>
+
+    <div class="headPopupTextDiv">
+      <div class="headPopupTitle">{{title}}</div>
+      <div class="headPopupCount">участников {{users.length}}</div>
+    </div>
+
+    <div class="loadImg">
+      <div>
+        <input accept="image/*" type="file" value="+" (change)="selectFiles($event)" class="loadInput" >
+      </div>
+      <div>
+        <input type="submit" [disabled]="!selectedFiles" (click)="uploadFiles()" value="применить" class="uploadInput">
+        <input type="submit" [disabled]="!selectedFiles" (click)="disUploadFiles()" value="отменить" class="cancelInput">
+      </div>
+      <div>
+        <img *ngFor='let preview of previews' [src]="preview" class="headPopupImg">
+      </div>
+    </div>
+
+  </div>
+  <div class="membersOfChat">
+    <div class="member" *ngFor="let mem of users">
+      <img [src]="mem.imgAvatar.url!" class="memberImg" *ngIf="checkImgForUser(mem);else withoutImg">
+      <ng-template #withoutImg>
+        <div class="memberWithoutImg">
+          <p>{{mem.name.charAt(0).toLocaleUpperCase()}}</p>
+        </div>
+      </ng-template>
+      <div class="memberName">{{mem.name}}</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,128 @@
+<div class="certainChat">
+  <div class="certainChatHead">
+    <div id="hiddenBlock" #hide>
+      <div class="cancelCross" (click)="cancelActions()"><img src="assets/free-icon-multiplication-251319.png" class="cross">Отменить</div>
+      <div class="deleteAndReplace">
+        <!--<div class="sendOn"><img src="assets/replay.png" class="sendOnImg"> <div class="sendOnText">Переслать</div></div>-->
+        <img src="assets/free-icon-trash-can-4300146.png" class="trashCan" (click)="deleteMessageConfirm()" *ngIf="showTrashCan">
+      </div>
+    </div>
+    <div id="visualBlock" #bl>
+      <div class="certainChatTitle certainChatArrowAndBack" [routerLink]="'/'">
+        <img src="assets/free-icon-arrow-circle-8019993.png" class="arrow">
+        <div class="certainChatTitleBack">Назад</div>
+      </div>
+      <div class="certainChatTitle">{{title}}</div>
+      <div class="certainChatMenu" (click)="openPopup()">
+        <img src="assets/free-icon-three-dots-859.png" class="points">
+
+        <img [src]="imageOfChat.url!" class="certainChatMainImg" *ngIf="checkImgForChat();else withoutImgChat">
+        <ng-template #withoutImgChat>
+          <div class="chatWithoutImg">
+            <p>{{title.charAt(0).toLocaleUpperCase()}}</p>
+          </div>
+        </ng-template>
+
+        <div class="certainChatMenuDropDown"></div>
+      </div>
+    </div>
+  </div>
+  <div class="allMessages" id="forScrollMessage">
+    <div *ngFor="let mes of messages;index as i" class="certainChatMessage" (click)="actionWithMessage($event,i)">
+      <div *ngIf="showDate(i)" class="dateBlock">{{returnDate(mes.date)}}</div>
+        <div class="showEditButtonFunction" *ngIf="showEditButtonFunction(mes.date)">
+          <img src="assets/free-icon-edit-button-7204760.png" class="editButton" (click)="editMessage(i)">
+          <!--<img src="assets/free-icon-trash-can-4300146.png" class="trashCanButton" (click)="deleteMessageConfirm(i)">-->
+        </div>
+        <div class="forChangePosition" [ngClass]="{userNowPosition:thisUser(mes.name)}">
+
+          <div *ngIf="showImageUser(i)">
+            <img [src]="mes.user_system_object.imgAvatar.url!" class="memberImg" *ngIf="checkImgForUser(mes.user_system_object);else withoutImg">
+            <ng-template #withoutImg>
+              <div class="memberWithoutImg">
+                <p>{{mes.name.charAt(0).toLocaleUpperCase()}}</p>
+              </div>
+            </ng-template>
+          </div>
+
+          <div class="emptyBlock" *ngIf="checkEmptyBlock(i)"></div>
+
+          <div class="certainChatGeneralBlock" [ngClass]="{userNow:thisUser(mes.name)}">
+            <div class="certainChatImgAndMain">
+              <!--<div class="certainChatImg"></div>-->
+             <!--<div *ngIf="showImageUser(i)" >
+                <img [src]="mes.user_system_object.imgAvatar.url!" class="memberImg" *ngIf="checkImgForUser(mes.user_system_object);else withoutImg">
+                <ng-template #withoutImg>
+                  <div class="memberWithoutImg">
+                    <p>{{mes.name.charAt(0).toLocaleUpperCase()}}</p>
+                  </div>
+                </ng-template>
+              </div>-->
+              <div class="certainChatMain">
+                <div *ngIf="showImageUser(i)" class="nameOfUserInChat">{{mes.name}}</div>
+                <div>{{mes.content}}</div>
+
+                <div *ngIf="mes.imageModelsForMessage" class="imagesOfMessage">
+                  <div *ngFor="let img of mes.imageModelsForMessage">
+                    <img [src]="img.url" class="certainImageOfMessage">
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="certainChatTime"><div>{{mes.date|date:"HH:mm"}}</div></div>
+          </div>
+
+          <!--<div *ngIf="mes.imageModelsForMessage" class="imagesOfMessage">
+            <div *ngFor="let img of mes.imageModelsForMessage">
+              <img [src]="img.url" class="certainImageOfMessage">
+            </div>
+          </div>-->
+
+        </div>
+    </div>
+    <div class="arrowDownCircle" (click)="messagesDown(300,-1)">
+      <img src="assets/free-icon-down-arrow-160724.png" class="arrowDown">
+    </div>
+    <section #resultsStart></section>
+
+    <div #scrollPoint></div>
+  </div>
+
+  <div class="wrapperForSendMessage">
+    <div class="blockWithPreviews">
+
+      <div id="editMessagePreviews" *ngIf="editMessagePreviews.length!=0">
+        <div *ngFor='let preview of editMessagePreviews;index as i' class="previewOfImg">
+          <img [src]="preview.url" class="previewImg">
+          <div class="crossImgDiv">
+            <img *ngIf="preview" src="assets/free-icon-multiplication-251319.png" class="crossImg" (click)="deleteImageEditMessagePreviews(i)">
+          </div>
+        </div>
+      </div>
+
+      <div id="previews" *ngIf="previews.length!=0">
+        <div *ngFor='let preview of previews;index as i' class="previewOfImg">
+          <img [src]="preview" class="previewImg">
+          <div class="crossImgDiv">
+            <img *ngIf="preview" src="assets/free-icon-multiplication-251319.png" class="crossImg" (click)="deleteImage(i)">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="sendMessageBlock">
+      <label class="input-file">
+        <input  accept="image/*" type="file" name="file" multiple (change)="selectFiles($event)">
+        <span><img src="assets/nestFile.png" class="input-file-nested-file"></span>
+      </label>
+      <input id="newMessage">
+      <div class="newMessageSend">
+        <img (click)="cancelUpdateMessage()" src="assets/free-icon-multiplication-251319.png" id="cancelUpdateMessage">
+        <img (click)="confirmUpdateMessage()" src="assets/confirm.png" id="editMessageConfirm">
+        <img (click)="newMessage()" src="assets/free-icon-right-arrowhead-5337043.png" id="newMessageIcon">
+      </div>
+    </div>
+  </div>
+</div>
